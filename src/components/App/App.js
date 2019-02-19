@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
 import { Route, Switch } from 'react-router-dom'
-import TokenService from '../../services/token-service'
-import AuthApiService from '../../services/auth-api-service'
 import Header from '../Header/Header'
-import PrivateRoute from '../Utils/PrivateRoute'
+// import PrivateRoute from '../Utils/PrivateRoute'
+// import PublicOnlyRoute from '../Utils/PublicOnlyRoute'
 import ArticleListPage from '../../routes/ArticleListPage/ArticleListPage'
 import ArticlePage from '../../routes/ArticlePage/ArticlePage'
 import LoginPage from '../../routes/LoginPage/LoginPage'
@@ -17,14 +16,6 @@ class App extends Component {
   static getDerivedStateFromError(error) {
     console.error(error)
     return { hasError: true }
-  }
-
-  componentDidMount() {
-    if (TokenService.hasAuthToken()) {
-      TokenService.queueCallbackBeforeExpiry(() => {
-        AuthApiService.postRefreshToken()
-      })
-    }
   }
 
   render() {
@@ -49,7 +40,7 @@ class App extends Component {
               path={'/register'}
               component={RegistrationPage}
             />
-            <PrivateRoute
+            <Route
               path={'/article/:articleId'}
               component={ArticlePage}
             />

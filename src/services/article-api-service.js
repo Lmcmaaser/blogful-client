@@ -1,11 +1,9 @@
 import config from '../config'
-import TokenService from './token-service'
 
 const ArticleApiService = {
   getArticles() {
     return fetch(`${config.API_ENDPOINT}/articles`, {
       headers: {
-        'authorization': `Bearer ${TokenService.getAuthToken()}`,
       },
     })
       .then(res =>
@@ -17,7 +15,6 @@ const ArticleApiService = {
   getArticle(articleId) {
     return fetch(`${config.API_ENDPOINT}/articles/${articleId}`, {
       headers: {
-        'authorization': `Bearer ${TokenService.getAuthToken()}`,
       },
     })
       .then(res =>
@@ -29,7 +26,6 @@ const ArticleApiService = {
   getArticleComments(articleId) {
     return fetch(`${config.API_ENDPOINT}/articles/${articleId}/comments`, {
       headers: {
-        'authorization': `Bearer ${TokenService.getAuthToken()}`,
       },
     })
       .then(res =>
@@ -43,7 +39,6 @@ const ArticleApiService = {
       method: 'POST',
       headers: {
         'content-type': 'application/json',
-        'authorization': `Bearer ${TokenService.getAuthToken()}`,
       },
       body: JSON.stringify({
         article_id: articleId,

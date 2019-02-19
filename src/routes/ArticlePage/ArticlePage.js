@@ -40,7 +40,7 @@ export default class ArticlePage extends Component {
           <ArticleAuthor article={article} />
         </>}
         <Hyph />
-        <NiceDate date={article.date_published} />
+        <NiceDate date={article.date_created} />
       </p>
       <ArticleContent article={article} />
       <ArticleComments comments={comments} />

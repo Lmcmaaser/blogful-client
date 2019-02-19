@@ -43,7 +43,7 @@ function ArticleDate({ article }) {
   return (
     <span className='ArticleListItem__date'>
       <NiceDate
-        date={article.date_published}
+        date={article.date_created}
       />
     </span>
   )

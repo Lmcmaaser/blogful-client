@@ -1,6 +1,4 @@
 import React, { Component } from 'react'
-// import TokenService from '../../services/token-service'
-import AuthApiService from '../../services/auth-api-service'
 import { Button, Input } from '../Utils/Utils'
 
 export default class LoginForm extends Component {
@@ -10,36 +8,16 @@ export default class LoginForm extends Component {
 
   state = { error: null }
 
-  // handleSubmitBasicAuth = ev => {
-  //   ev.preventDefault()
-  //   const { user_name, password } = ev.target
-  //   TokenService.processBasicAuthToken(user_name.value, password.value)
-  //   user_name.value = ''
-  //   password.value = ''
-  //   this.props.onLoginSuccess()
-  // }
-
-  handleSubmit = ev => {
+  handleSubmitBasicAuth = ev => {
     ev.preventDefault()
-    this.setState({ error: null })
     const { user_name, password } = ev.target
 
-    AuthApiService.postLogin({
-      user_name: user_name.value,
-      password: password.value,
-    })
-      .then(res => {
-        user_name.value = ''
-        password.value = ''
-        // TokenService.saveAuthToken(res.authToken)
-        // TokenService.queueRefreshCallback(() => {
-        //   AuthApiService.postRefreshToken()
-        // })
-        this.props.onLoginSuccess()
-      })
-      .catch(res => {
-        this.setState({ error: res.error })
-      })
+    console.log('login form submitted')
+    console.log({ user_name, password })
+
+    user_name.value = ''
+    password.value = ''
+    this.props.onLoginSuccess()
   }
 
   render() {
@@ -47,7 +25,7 @@ export default class LoginForm extends Component {
     return (
       <form
         className='LoginForm'
-        onSubmit={this.handleSubmit}
+        onSubmit={this.handleSubmitBasicAuth}
       >
         <div role='alert'>
           {error && <p className='red'>{error}</p>}

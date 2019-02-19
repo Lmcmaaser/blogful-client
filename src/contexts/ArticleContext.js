@@ -14,6 +14,7 @@ const ArticleContext = React.createContext({
   setArticle: () => {},
   clearArticle: () => {},
   setComments: () => {},
+  addComment: () => {},
 })
 
 export default ArticleContext
